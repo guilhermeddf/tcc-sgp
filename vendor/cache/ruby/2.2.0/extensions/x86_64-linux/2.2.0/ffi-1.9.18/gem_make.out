@@ -1,0 +1,45 @@
+/home/guilherme/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20170403-4537-1klisei.rb extconf.rb
+checking for ffi_call() in -lffi... yes
+checking for ffi_prep_closure()... yes
+checking for ffi_raw_call()... yes
+checking for ffi_prep_raw_closure()... yes
+checking for shlwapi.h... no
+checking for rb_thread_blocking_region()... no
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for ffi_prep_cif_var()... yes
+creating extconf.h
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling StructLayout.c
+compiling Struct.c
+compiling StructByValue.c
+compiling Type.c
+compiling LongDouble.c
+compiling DataConverter.c
+compiling MappedType.c
+compiling ffi.c
+compiling Platform.c
+compiling Call.c
+compiling StructByReference.c
+compiling AbstractMemory.c
+compiling MethodHandle.c
+compiling ArrayType.c
+compiling ClosurePool.c
+compiling Buffer.c
+compiling Function.c
+compiling MemoryPointer.c
+compiling Types.c
+compiling LastError.c
+compiling Pointer.c
+compiling Thread.c
+compiling DynamicLibrary.c
+compiling FunctionInfo.c
+compiling Variadic.c
+linking shared-object ffi_c.so
+
+make "DESTDIR=" install
+/usr/bin/install -m 0755 ffi_c.so ./.gem.20170403-4537-1q68hbx

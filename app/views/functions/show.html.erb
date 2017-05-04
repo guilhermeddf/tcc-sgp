@@ -1,0 +1,9 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>name:</strong>
+    <%= @function.name %>
+  </p>
+
+    <%= link_to 'Editar', edit_function_path(@function), class: 'ui button' %>
+  <%= link_to 'Voltar', functions_path, class: 'ui button' %>
+</div>

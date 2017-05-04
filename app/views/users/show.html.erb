@@ -1,0 +1,33 @@
+<p>
+	<div class="ui items">
+	<div class="item">
+      <div class="ui small image">
+        <%=  (@user.avatar?) ? image_tag(@user.avatar_url) : image_tag('avatar.png') %>
+      </div>
+    <div class="content">
+      <div class="header">Nome</div>
+      <div class="meta">
+        <p>
+          <strong>Nome:</strong>
+          <%= @user.name %>
+        </p>
+        <p>
+        	<strong>E-mail:</strong>
+	    		<%= @user.email %>
+        </p>
+			    <strong>Aprovado:</strong>
+			    <% if @user.approved %>
+            Sim
+          <% else %>
+            Não
+          <% end %>
+        </p>
+      </div>
+      <div class="description">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+	<%= link_to 'Voltar', users_path,  class: 'ui tiny blue basic button ' %>
+</p>

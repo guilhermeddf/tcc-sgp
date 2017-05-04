@@ -1,0 +1,39 @@
+<div class="ui form">
+  <h4 class="ui dividing header">Informações</h4>
+  <%= form_for(user_language) do |f| %>
+    <% if user_language.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user_language.errors.count, "error") %> prohibited this user_language from being saved:</h2>
+
+        <ul>
+        <% user_language.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="field">
+        <%= f.label :language_id %>
+        <%= f.collection_select(:language_id, Language.available_for_user(current_user), :id, :name, {:prompt=>true}, {:class=>'ui search dropdown'}) %>
+      </div>
+
+      <div class="field">
+        <%= f.label :proficiency, id: 'proficiency' %>
+        <%= f.range_field :proficiency %>
+      </div>
+       <%= f.hidden_field :user_id, :value => current_user.id%>
+
+      <div class="actions">
+      <%= f.submit class:'ui teal button' %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(".form").change(function() {
+    input = $("#user_language_proficiency").val();
+    label = $("#proficiency");
+    label.text("Proeficiência de " + input + "%");
+  })
+</script>

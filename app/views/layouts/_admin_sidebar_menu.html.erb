@@ -1,0 +1,43 @@
+<!-- side left menu -->
+<div class="ui vertical inverted left visible sidebar menu overlay labeled icon" style='width:200px;'>
+  <%= link_to dashboard_index_path, class: "#{is_current_page?(dashboard_index_path)} item" do %>
+  <i class="home icon"></i>
+    Inicio
+  <% end %>
+
+  <%= link_to dashboard_normal_path, class: "#{is_current_page?(dashboard_normal_path)} item" do %>
+  <i class="home icon"></i>
+    Inicio
+  <% end %>
+
+  <%= link_to users_path, class: "#{is_current_page?(users_path)} item" do %>
+  <i class="user icon"></i>
+    Usuários
+  <% end %>
+
+  <%= link_to locals_path, class: "#{is_current_page?(locals_path)} item" do %>
+  <i class="home icon"></i>
+    Localidades
+  <% end %>
+
+  <%= link_to languages_path, class: "#{is_current_page?(languages_path)} item" do %>
+  <i class="home icon"></i>
+    Linguagens
+  <% end %>
+
+  <%= link_to projects_path, class: "#{is_current_page?(projects_path)} item" do %>
+  <i class="home icon"></i>
+    Projetos
+  <% end %>
+
+  <%= link_to functions_path, class: "#{is_current_page?(functions_path)} item" do %>
+  <i class="home icon"></i>
+    Funções
+  <% end %>
+
+  <%= link_to abilities_path, class: "#{is_current_page?(abilities_path)} item" do %>
+  <i class="home icon"></i>
+    Habilidades para pojetos
+  <% end %>
+
+</div>

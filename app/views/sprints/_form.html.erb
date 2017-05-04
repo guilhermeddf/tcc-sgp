@@ -1,0 +1,65 @@
+<div class="ui form">
+  <h4 class="ui dividing header">Informações da Sprint: <%= @project.name %></h4>
+  <%= form_for([@project, sprint]) do |f| %>
+  <% if sprint.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(sprint.errors.count, "error") %> prohibited this sprint from being saved:</h2>
+
+    <ul>
+      <% sprint.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :planning_start_date %>
+    <%= f.date_select :planning_start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :planning_end_date %>
+    <%= f.date_select :planning_end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :execution_start_date %>
+    <%= f.date_select :execution_start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :execution_end_date %>
+    <%= f.date_select :execution_end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :review_meeting_date %>
+    <%= f.date_select :review_meeting_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :retrospective_meeting_date %>
+    <%= f.date_select :retrospective_meeting_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :release_id %>
+    <%= f.collection_select(:release_id, Release.from_project(@project), :id, :version, {:prompt=>true}, {:class=>'ui search dropdown'}) %>
+    <div class='ui teal button', id="create_release">Criar Release</div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class:'ui teal button' %>
+  </div>
+  <% end %>

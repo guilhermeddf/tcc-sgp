@@ -1,0 +1,28 @@
+
+<h1 class="ui header" >User Tasks</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_tasks.each do |user_task| %>
+      <tr>
+        <td><%= user_task.user %></td>
+        <td><%= user_task.task %></td>
+        <td><%= link_to 'Detalhes', user_task, class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_user_task_path(user_task), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', user_task, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova User Task', new_user_task_path, class: 'ui teal button' %>

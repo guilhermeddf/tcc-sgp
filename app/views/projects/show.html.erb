@@ -1,0 +1,65 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>Nome:</strong>
+    <%= @project.name %>
+  </p>
+
+    <p>
+    <strong>Tamanho do projeto:</strong>
+    <%= @project.size %>
+  </p>
+
+    <p>
+    <strong>Data de ínicio:</strong>
+    <%= l @project.start_date %>
+  </p>
+
+    <p>
+    <strong>Data de termino:</strong>
+    <%= l @project.end_date %>
+  </p>
+
+    <p>
+    <strong>Localidade:</strong>
+    <%= @project.local.name %>
+  </p>
+
+    <p><strong>Dados do Repositório</strong></p>
+    <p>
+      <strong>Nome:</strong>
+      <%=  dados_repos["name_repos"] %>
+    </p>
+
+    <%= link_to 'Editar', edit_project_path(@project), class: 'ui button' %>
+    <%= link_to 'Voltar', projects_path, class: 'ui button' %>
+</div>
+
+
+<div class='ui padded center aligned blue segment show'>
+  <%= link_to 'Adicionar membro ao projeto', new_project_function_user_project_path(@project,@function_user_project),class: 'ui positive button'%>
+  <%= link_to 'Gerenciar Sprints', project_sprints_path(@project),class: 'ui positive button'%>
+  <%= link_to 'Gerenciar Releases', project_releases_path(@project),class: 'ui positive button'%>
+  <%= link_to 'Gerenciar Temas', project_themes_path(@project),class: 'ui positive button'%>
+</div>
+
+<h1 class"ui header">Membros do projeto</h1>
+  <table class='ui orange table '>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Função</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project.function_user_projects.each do |member| %>
+      <tr>
+        <td><%= member.user.name %></td>
+        <td><%= member.function.name %></td>
+        <td><%= link_to 'Editar', edit_project_function_user_project_path(@project,member, edit: :true), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', project_function_user_project_path(@project,member), method: :delete, data: { confirm: 'Você tem certeza que deseja excluir o membro desse projeto?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

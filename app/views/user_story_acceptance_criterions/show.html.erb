@@ -1,0 +1,15 @@
+<div class='ui padded center aligned teal segment show'>
+  <p>
+    <strong>Descrição:</strong>
+    <%= @user_story_acceptance_criterion.description %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @user_story_acceptance_criterion.status %>
+  </p>
+
+
+  <%= link_to 'Editar', edit_project_theme_user_story_user_story_acceptance_criterion_path(@project, @theme, @user_story, @user_story_acceptance_criterion), class: 'ui button' %>
+  <%= link_to 'Voltar', [@project, @theme, @user_story], class: 'ui button' %>
+</div>

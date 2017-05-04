@@ -1,0 +1,35 @@
+<div class="ui form">
+  <h4 class="ui dividing header">Informações</h4>
+  <%= form_for(task_requirement) do |f| %>
+    <% if task_requirement.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(task_requirement.errors.count, "error") %> prohibited this task_requirement from being saved:</h2>
+
+        <ul>
+        <% task_requirement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="field">
+        <%= f.label :task_id %>
+      <%= f.text_field :task_id %>
+      </div>
+
+      <div class="field">
+        <%= f.label :ability_id %>
+      <%= f.text_field :ability_id %>
+      </div>
+
+      <div class="field">
+        <%= f.label :level %>
+      <%= f.number_field :level %>
+      </div>
+
+      <div class="actions">
+      <%= f.submit class:'ui teal button' %>
+    </div>
+  <% end %>
+</div>

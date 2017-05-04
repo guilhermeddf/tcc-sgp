@@ -1,0 +1,1 @@
+json.partial! "user_story_acceptance_criterions/user_story_acceptance_criterion", user_story_acceptance_criterion: @user_story_acceptance_criterion

@@ -1,0 +1,28 @@
+
+<h1 class="ui header" >Minhas Habilidades</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>Habilidade</th>
+      <th>Pontos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_abilities.each do |user_ability| %>
+      <tr>
+        <td><%= user_ability.ability.name %></td>
+        <td><%= user_ability.points %></td>
+        <td><%= link_to 'Detalhes', user_ability, class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_user_ability_path(user_ability), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', user_ability, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Adicionar Habilidade', new_user_ability_path, class: 'ui teal button' %>

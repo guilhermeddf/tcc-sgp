@@ -1,0 +1,9 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>name:</strong>
+    <%= @language.name %>
+  </p>
+
+    <%= link_to 'Editar', edit_language_path(@language), class: 'ui button' %>
+  <%= link_to 'Voltar', languages_path, class: 'ui button' %>
+</div>

@@ -1,0 +1,6 @@
+<h1>Editar função do membro no projeto: <%= @project.name %> </h1>
+
+<%= render 'form', function_user_project: @function_user_project %>
+
+<%= link_to 'Detalhes', [@project,@function_user_project], class: 'ui button' %>
+<%= link_to 'Voltar', project_path(@project), class: 'ui button' %>

@@ -1,0 +1,31 @@
+<table class="ui teal table">
+   <thead>
+     <tr>
+       <th>Projeto</th>
+       <th>Ínicio</th>
+       <th>Fim</th>
+       <th>Progresso</th>
+       <th colspan="4"></th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @projects.each do |project| %>
+       <tr>
+         <td><%= project.name %></td>
+         <td><%= l(project.start_date) %></td>
+         <td><%= l project.end_date %></td>
+         <td>
+           <div class="ui indicating progress" data-percent="<%= project.percentage_completed %>">
+               <div class="bar" style="transition-duration: 300ms; width: <%= project.percentage_completed %>%;"></div>
+               <div class="label">Completado</div>
+           </div>
+         </td>
+         <td class="right aligned" ><%= link_to 'Escolher projeto', selection_project_path(project_id: project.id), class: 'ui tiny positive button' %></td>
+         <td><%# link_to 'Editar', edit_report_path(report), class: 'ui tiny blue basic button' %></td>
+         <td><p><%# link_to 'Ver imagens', images_for_report_index_path(devic: report.id), class: 'ui tiny green basic button' %></p></td>
+         <td><%# link_to 'Excluir', report, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui tiny red basic button' %></td>
+       </tr>
+     <% end %>
+   </tbody>
+</table>

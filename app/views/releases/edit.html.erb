@@ -1,0 +1,6 @@
+<h1>Editar Release</h1>
+
+<%= render 'form', release: @release %>
+
+<%= link_to 'Detalhes', [@project, @release], class: 'ui button' %>
+<%= link_to 'Voltar', project_releases_path, class: 'ui button' %>

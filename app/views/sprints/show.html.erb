@@ -1,0 +1,114 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>project:</strong>
+    <%= @sprint.project %>
+  </p>
+
+    <p>
+    <strong>start_date:</strong>
+    <%= @sprint.start_date %>
+  </p>
+
+    <p>
+    <strong>end_date:</strong>
+    <%= @sprint.end_date %>
+  </p>
+
+    <p>
+    <strong>planning_start_date:</strong>
+    <%= @sprint.planning_start_date %>
+  </p>
+
+    <p>
+    <strong>planning_end_date:</strong>
+    <%= @sprint.planning_end_date %>
+  </p>
+
+    <p>
+    <strong>execution_start_date:</strong>
+    <%= @sprint.execution_start_date %>
+  </p>
+
+    <p>
+    <strong>execution_end_date:</strong>
+    <%= @sprint.execution_end_date %>
+  </p>
+
+    <p>
+    <strong>review_meeting_date:</strong>
+    <%= @sprint.review_meeting_date %>
+  </p>
+
+    <p>
+    <strong>retrospective_meeting_date:</strong>
+    <%= @sprint.retrospective_meeting_date %>
+  </p>
+
+    <p>
+    <strong>release:</strong>
+    <%= @sprint.release %>
+  </p>
+
+    <%= link_to 'Editar', edit_sprint_path(@sprint), class: 'ui button' %>
+  <%= link_to 'Voltar', sprints_path, class: 'ui button' %>
+</div>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Release
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <%= image_tag 'rachel.png' %>
+    </div>
+    <div class="description">
+      <div class="ui dividing header">Informações da release.</div>
+      <div class="ui form">
+        <%= form_for([@project,@release]) do |ff| %>
+          <% if @release.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@release.errors.count, "error") %> prohibited this release from being saved:</h2>
+            <ul>
+              <% @release.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+
+          <div class="field">
+            <%= ff.label :version %>
+            <%= ff.text_field :version %>
+          </div>
+
+          <div class="field">
+            <%= ff.label :deliver_date %>
+            <%= ff.date_select :deliver_date %>
+          </div>
+
+          <div class="field">
+            <%= ff.hidden_field :project_id, value: @project.id %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Cancelar
+      </div>
+      <%= ff.submit class:"ui positive right labeled icon button" do %>
+      Criar release
+      <i class="checkmark icon"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+  <script type="text/javascript">
+  $("#create_release").click(function(){
+    $('.ui.modal')
+    .modal('show');
+  })
+  </script>

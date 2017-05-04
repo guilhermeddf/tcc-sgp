@@ -1,0 +1,30 @@
+
+<h1 class="ui header" >Task Requirements</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Ability</th>
+      <th>Level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_requirements.each do |task_requirement| %>
+      <tr>
+        <td><%= task_requirement.task %></td>
+        <td><%= task_requirement.ability %></td>
+        <td><%= task_requirement.level %></td>
+        <td><%= link_to 'Detalhes', task_requirement, class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_task_requirement_path(task_requirement), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', task_requirement, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Task Requirement', new_task_requirement_path, class: 'ui teal button' %>

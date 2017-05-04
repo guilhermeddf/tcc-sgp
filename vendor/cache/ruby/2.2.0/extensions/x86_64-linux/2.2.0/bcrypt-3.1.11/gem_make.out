@@ -1,0 +1,15 @@
+/home/guilherme/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20170403-4537-urxuqm.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling crypt_gensalt.c
+compiling crypt_blowfish.c
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+make "DESTDIR=" install
+/usr/bin/install -m 0755 bcrypt_ext.so ./.gem.20170403-4537-1aqcdhj

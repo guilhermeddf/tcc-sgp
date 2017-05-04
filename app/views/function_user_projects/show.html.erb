@@ -1,0 +1,19 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>project:</strong>
+    <%= @function_user_project.project %>
+  </p>
+
+    <p>
+    <strong>function:</strong>
+    <%= @function_user_project.function %>
+  </p>
+
+    <p>
+    <strong>user:</strong>
+    <%= @function_user_project.user %>
+  </p>
+
+    <%= link_to 'Editar', edit_function_user_project_path(@function_user_project), class: 'ui button' %>
+  <%= link_to 'Voltar', function_user_projects_path, class: 'ui button' %>
+</div>

@@ -1,0 +1,19 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>task:</strong>
+    <%= @task_requirement.task %>
+  </p>
+
+    <p>
+    <strong>ability:</strong>
+    <%= @task_requirement.ability %>
+  </p>
+
+    <p>
+    <strong>level:</strong>
+    <%= @task_requirement.level %>
+  </p>
+
+    <%= link_to 'Editar', edit_task_requirement_path(@task_requirement), class: 'ui button' %>
+  <%= link_to 'Voltar', task_requirements_path, class: 'ui button' %>
+</div>

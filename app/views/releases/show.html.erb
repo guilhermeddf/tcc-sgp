@@ -1,0 +1,19 @@
+<div class='ui padded center aligned teal segment show'>
+  <p>
+    <strong>Versão:</strong>
+    <%= @release.version %>
+  </p>
+
+  <p>
+    <strong>deliver_date:</strong>
+    <%= l @release.deliver_date %>
+  </p>
+
+  <p>
+    <strong>Projeto:</strong>
+    <%= @release.project.name %>
+  </p>
+
+  <%= link_to 'Editar', edit_project_release_path(@release), class: 'ui button' %>
+  <%= link_to 'Voltar', project_releases_path(@project), class: 'ui button' %>
+</div>

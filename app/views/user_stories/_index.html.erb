@@ -1,0 +1,36 @@
+<h1 class="ui header" ><%= "Tema: #{@theme.name} " %>
+  <br>
+  <hr>
+  User Stories
+</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Valor de negócio</th>
+      <th>Status</th>
+      <th>Story points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_stories.each do |user_story| %>
+      <tr>
+        <td><%= user_story.description %></td>
+        <td><%= user_story.business_value %></td>
+        <td><%= user_story.status %></td>
+        <td><%= user_story.story_points %></td>
+        <td><%= link_to 'Detalhes', project_theme_user_story_path(@project, @theme, user_story), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_project_theme_user_story_path(@project, @theme, user_story), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', [@project, @theme, user_story], method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova User Story', new_project_theme_user_story_path(@project,@theme), class: 'ui teal button' %>
+<%= link_to 'Voltar', [@project,@theme], class: 'ui button' %>

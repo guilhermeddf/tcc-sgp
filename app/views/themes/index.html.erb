@@ -1,0 +1,28 @@
+
+<h1 class="ui header" >Temas</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr>
+        <td><%= theme.name %></td>
+        <td><%= link_to 'Detalhes', [@project, theme], class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_project_theme_path(@project, theme), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Add User Story', new_project_theme_user_story_path(@project, theme), class: 'ui tiny green basic button' %></td>
+        <td><%= link_to 'Excluir', [@project, theme], method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo tema', new_project_theme_path(@project), class: 'ui teal button' %>
+<%= link_to 'Voltar', project_path(@project), class: 'ui button' %>

@@ -1,0 +1,41 @@
+
+<h1 class="ui header" >Projects</h1>
+
+<table class='ui orange table'>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Tamanho</th>
+      <th>Data de ínicio</th>
+      <th>Data de termino</th>
+      <th>Localidade</th>
+      <th>Porcentagem completada</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.size %></td>
+        <td><%= project.start_date %></td>
+        <td><%= project.end_date %></td>
+        <td><%= project.local.name %></td>
+        <td>
+          <div class="ui indicating progress" data-percent="<%= project.percentage_completed %>">
+              <div class="bar" style="transition-duration: 300ms; width: <%= project.percentage_completed %>%;"></div>
+              <div class="label">Completado</div>
+          </div>
+        </td>
+        <td><%= link_to 'Detalhes', project, class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Editar', edit_project_path(project), class: 'ui tiny blue basic button' %></td>
+        <td><%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: 'ui tiny red basic button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Project', new_project_path, class: 'ui teal button' %>

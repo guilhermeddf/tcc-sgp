@@ -1,0 +1,24 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>description:</strong>
+    <%= @task.description %>
+  </p>
+
+    <p>
+    <strong>end_date:</strong>
+    <%= @task.end_date %>
+  </p>
+
+    <p>
+    <strong>status:</strong>
+    <%= @task.status %>
+  </p>
+
+    <p>
+    <strong>user_story:</strong>
+    <%= @task.user_story %>
+  </p>
+
+    <%= link_to 'Editar', edit_task_path(@task), class: 'ui button' %>
+  <%= link_to 'Voltar', tasks_path, class: 'ui button' %>
+</div>

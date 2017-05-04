@@ -1,0 +1,14 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>user:</strong>
+    <%= @user_task.user %>
+  </p>
+
+    <p>
+    <strong>task:</strong>
+    <%= @user_task.task %>
+  </p>
+
+    <%= link_to 'Editar', edit_user_task_path(@user_task), class: 'ui button' %>
+  <%= link_to 'Voltar', user_tasks_path, class: 'ui button' %>
+</div>

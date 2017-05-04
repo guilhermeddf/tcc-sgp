@@ -1,0 +1,24 @@
+<div class='ui padded center aligned teal segment show'>
+    <p>
+    <strong>name:</strong>
+    <%= @local.name %>
+  </p>
+
+    <p>
+    <strong>country:</strong>
+    <%= @local.country %>
+  </p>
+
+    <p>
+    <strong>state:</strong>
+    <%= @local.state %>
+  </p>
+
+    <p>
+    <strong>city:</strong>
+    <%= @local.city %>
+  </p>
+
+    <%= link_to 'Editar', edit_local_path(@local), class: 'ui button' %>
+  <%= link_to 'Voltar', locals_path, class: 'ui button' %>
+</div>

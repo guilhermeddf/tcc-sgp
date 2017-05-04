@@ -1,0 +1,20 @@
+<!-- side left menu -->
+<div class="ui vertical inverted left visible sidebar menu overlay labeled icon" style='width:200px;'>
+
+  <%= link_to root_path, class: "#{is_current_page?(root_path)} item" do %>
+    <i class="home icon"></i>
+    Inicio
+  <% end %>
+
+  <%= link_to selection_project_path, class: "#{is_current_page?(selection_project_path)} item" do %>
+    <i class="home icon"></i>
+    Projetos
+  <% end %>
+
+  <% if current_project %>
+    <%= link_to project_tasks_path(project_id: current_project), class: "#{is_current_page?(project_tasks_path(project_id: current_project))} item" do %>
+    <i class="home icon"></i>
+    Tarefas
+    <% end %>
+  <% end %>
+</div>

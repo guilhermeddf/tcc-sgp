@@ -1,0 +1,32 @@
+<h1><%= t(".title")%></h1>
+
+<table class="ui orange table">
+  <thead>
+    <tr>
+      <th>E-mail</th>
+      <th>Aprovado</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+
+          <td><%= user.email %></td>
+          <% if user.approved %>
+          <td>Sim</td>
+          <td><%= link_to 'Desaprovar usuário', change_approved_path(user), class: 'ui tiny blue basic button ' %></td>
+          <% else %>
+          <td>Não</td>
+          <td><%= link_to 'Aprovar usuário', change_approved_path(user), class: 'ui tiny blue basic button ' %></td>
+          <% end %>
+        <td><%= link_to 'Editar', edit_user_path(user), class: 'ui tiny blue basic button ' %></td>
+        <td><%= link_to 'Ver', user, class: 'ui tiny blue basic button ' %></td>
+        <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Você tem certeza?'}, class: 'ui tiny red basic button ' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

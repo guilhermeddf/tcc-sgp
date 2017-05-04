@@ -1,0 +1,39 @@
+<div class="ui form">
+  <h4 class="ui dividing header">Informações</h4>
+  <%= form_for([@project,@function_user_project]) do |f| %>
+  <% if @function_user_project.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@function_user_project.errors.count, "error") %> prohibited this function_user_project from being saved:</h2>
+
+    <ul>
+      <% @function_user_project.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :function_id %>
+    <%= f.collection_select(:function_id, Function.all, :id, :name, {:prompt=>true}, {:class=>'ui search dropdown'}) %>
+  </div>
+
+  <% if params['edit'] %>
+    <div class="field">
+      <%= f.label :user_id %>
+      <strong>
+        <%= @function_user_project.user.name %>
+      </strong>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.label :user_id %>
+      <%= f.collection_select(:user_id, FunctionUserProject.available_user_for(@project.id), :id, :name, {:prompt=>true}, {:class=>'ui search dropdown'}) %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit class:'ui teal button' %>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,127 @@
+
+<div class="ui form">
+  <h4 class="ui dividing header">Informações</h4>
+  <%= form_for(project) do |f| %>
+    <% if project.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+        <ul>
+        <% project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :size, id: 'project_label_size' %>
+        <%= f.range_field :size, :in => 0..10000, :step => '.1' %>
+      </div>
+
+        <div class="field">
+          <%= f.label :start_date %>
+          <%= f.date_select :start_date %>
+        </div>
+
+      <div class="field">
+        <%= f.label :end_date %>
+        <%= f.date_select :end_date, {:class => "input-mini"} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :local_id %>
+        <%= f.collection_select(:local_id, Local.all, :id, :name, {:prompt=>true}, {:class=>'ui search dropdown'}) %>
+      </div>
+
+      <div>
+        <%= label_tag 'Deseja criar repositório?' -%>
+        <input type="checkbox" id="teste">
+      </div>
+
+      <div id="create_repos">
+        <%= form_tag(projects_create_repos_path) do -%>
+        
+        <div class="field">
+          <%= label_tag 'Nome:' -%>
+          <%= text_field_tag 'name', '', size: 30-%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Web Site:' -%>
+          <%= text_field_tag 'site', '', size: 30-%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Descrição:' -%>
+          <%= text_field_tag 'description', '', size: 60-%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Privado:' -%>
+          <%= radio_button_tag( 'opc_private', 'true')-%>
+          <%= label_tag 'Sim' -%>
+          <%= radio_button_tag( 'opc_private', 'false')-%>
+          <%= label_tag 'Não' -%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Issues:' -%>
+          <%= radio_button_tag( 'opc_issues', 'true')-%>
+          <%= label_tag 'Sim' -%>
+          <%= radio_button_tag( 'opc_issues', 'false')-%>
+          <%= label_tag 'Não' -%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Projetos:' -%>
+          <%= radio_button_tag( 'opc_project', 'true')-%>
+          <%= label_tag 'Sim' -%>
+          <%= radio_button_tag( 'opc_project', 'false')-%>
+          <%= label_tag 'Não' -%>
+        </div>
+        
+        <div class="field">
+          <%= label_tag 'Wiki:' -%>
+          <%= radio_button_tag( 'opc_wiki', 'true')-%>
+          <%= label_tag 'Sim' -%>
+          <%= radio_button_tag( 'opc_wiki', 'false')-%>
+          <%= label_tag 'Não' -%>   
+        </div>
+        
+      </div>
+
+      <div class="actions">
+      <%= f.submit class:'ui teal button' %>
+    </div>
+    <% end -%>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(".form").change(function() {
+    input = $("#project_size").val();
+    label = $("#project_label_size");
+    label.text("Tamanho " + input);
+    console.log("Current Value = " + input);
+  })
+
+    document.getElementById("create_repos").style.display="none";
+  $("#teste").click(function(){
+    console.log($("#teste").val());
+    if($("#teste").val() === "on"){
+      document.getElementById("create_repos").style.display="inline";
+      $("#teste").val("off");
+    }
+    else{
+      document.getElementById("create_repos").style.display="none";
+      $("#teste").val("on");
+    }
+  });
+
+</script>

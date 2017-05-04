@@ -1,0 +1,51 @@
+<div class="ui form">
+  <h4 class="ui dividing header">Informações</h4>
+  <%= form_for([@project, @theme, user_story]) do |f| %>
+    <% if user_story.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user_story.errors.count, "error") %> prohibited this user_story from being saved:</h2>
+        <ul>
+        <% user_story.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="field">
+        <%= f.label :business_value, id: 'label_business_value' %>
+        <%= f.range_field :business_value, :in => 0..10000 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :status %>
+        <%= f.number_field :status %>
+      </div>
+
+      <div class="field">
+        <%= f.label :story_points, id: 'label_story_points' %>
+        <%= f.range_field :story_points, :in => 0..1000 %>
+      </div>
+
+      <div class="actions">
+      <%= f.submit class:'ui teal button' %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(".form").change(function() {
+    story_points = $("#user_story_story_points").val();
+    label = $("#label_story_points");
+    label.text("Pontos de relator: " + story_points);
+
+    business_value = $("#user_story_business_value").val();
+    label = $("#label_business_value");
+    label.text("Valor de negócio: " + business_value);
+  })
+</script>

@@ -1,0 +1,51 @@
+<div class="ui grid container">
+  <div class="ten wide column">
+    <h2><%= t(".title")%></h2>
+    <div class="ui form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true, placeholder: "Digite seu nome" %>
+      </div>
+
+      <div class="ui small image">
+        <%= image_tag(@user.avatar_url) if @user.avatar? %>
+      </div>
+
+      <div class="field">
+        <%= f.label :avatar %><br>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %> <i>(Deixe em branco se você não quer mudar isto!)</i><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(Nós precisamos que você coloque sua senha atual para confirmar as mudanças
+        )</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit t(".update"), class: 'ui button positive' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+</br>
