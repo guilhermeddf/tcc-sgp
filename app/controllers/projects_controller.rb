@@ -9,14 +9,13 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @qualquer
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     @function_user_project = FunctionUserProject.new
-    @dados_repos
-    
   end
 
   # GET /projects/new
@@ -36,23 +35,22 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @client = Octokit::Client.new(:login => 'guilhermeddf', :password => 'a07021991')
     x = params[:opcao_privado] == "true"? true : false
-    
-    
-    @dados_repos = { "name_repos" => params[:name],
-    "desc_repos" => params[:description],
-    "home_repos" => params[:site],
-    "issu_repos" => params[:opc_issues],
-    "proj_repos" => params[:opc_project],
-    "wiki_repos" => params[:opc_wiki]}
 
-    set_up_instance_variable(@dados_repos)
+    cookies[:name_repos] = params[:name]
+    cookies[:desc_repos] = params[:description]
+    cookies[:home_repos] = params[:site]
+    cookies[:issu_repos] = params[:opc_issues]
+    cookies[:proj_repos] = params[:opc_project]
+    cookies[:wiki_repos] = params[:opc_wiki]
 
-      @client.create_repository(params[:name], options = {"description": params[:description],
+    @client.create_repository(params[:name], options = {"description": params[:description],
                     "homepage": params[:site],
                     "private": x,
                     "has_issues": params[:opc_issues],
                     "has_projects": params[:opc_project],
                     "has_wiki": params[:opc_wiki]}) 
+
+  
 
     respond_to do |format|                
       if @project.save
@@ -101,7 +99,5 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name, :size, :start_date, :end_date, :local_id)
     end
 
-    def set_up_instance_variable(teste)
-        @dados_repos = teste
-    end
+  
 end

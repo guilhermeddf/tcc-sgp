@@ -1,4 +1,6 @@
 <div class='ui padded center aligned teal segment show'>
+    
+<h4>Dados do Projeto</h4>
     <p>
     <strong>Nome:</strong>
     <%= @project.name %>
@@ -24,10 +26,30 @@
     <%= @project.local.name %>
   </p>
 
-    <p><strong>Dados do Repositório</strong></p>
+    <h4>Dados do Repositório</h4>
     <p>
       <strong>Nome:</strong>
-      <%=  dados_repos["name_repos"] %>
+      <%=  cookies[:name_repos] %>
+    </p>
+    <p>
+      <strong>Descrição:</strong>
+      <%=  cookies[:desc_repos] %>
+    </p>
+    <p>
+      <strong>Home Page:</strong>
+      <%=  cookies[:home_repos] %>
+    </p>
+    <p>
+      <strong>Issues:</strong>
+      <%=  cookies[:issu_repos] %>
+    </p>
+    <p>
+      <strong>Projetos:</strong>
+      <%=  cookies[:proj_repos] %>
+    </p>
+    <p>
+      <strong>Wiki:</strong>
+      <%=  cookies[:wiki_repos] %>
     </p>
 
     <%= link_to 'Editar', edit_project_path(@project), class: 'ui button' %>
