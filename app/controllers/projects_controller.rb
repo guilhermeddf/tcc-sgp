@@ -16,6 +16,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @function_user_project = FunctionUserProject.new
+    @client = Octokit::Client.new(:login => 'guilhermeddf', :password => 'a07021991')
+    @verif_repo = @client.repository?("guilhermeddf/"+@project.name)
+    if @verif_repo 
+      @var = @client.repository("guilhermeddf/"+@project.name)
+    end
   end
 
   # GET /projects/new
@@ -36,14 +41,7 @@ class ProjectsController < ApplicationController
     @client = Octokit::Client.new(:login => 'guilhermeddf', :password => 'a07021991')
     x = params[:opcao_privado] == "true"? true : false
 
-    cookies[:name_repos] = params[:name]
-    cookies[:desc_repos] = params[:description]
-    cookies[:home_repos] = params[:site]
-    cookies[:issu_repos] = params[:opc_issues]
-    cookies[:proj_repos] = params[:opc_project]
-    cookies[:wiki_repos] = params[:opc_wiki]
-
-    @client.create_repository(params[:name], options = {"description": params[:description],
+    @client.create_repository(@project.name, options = {"description": params[:description],
                     "homepage": params[:site],
                     "private": x,
                     "has_issues": params[:opc_issues],
@@ -98,6 +96,4 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :size, :start_date, :end_date, :local_id)
     end
-
-  
 end
