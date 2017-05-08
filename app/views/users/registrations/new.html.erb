@@ -62,6 +62,20 @@ body > .grid {
         </div>
       </div>
 
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <%= f.text_field :usernamegit, autofocus: true, placeholder: " Github Username" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :passwordgit, autocomplete: "off", placeholder: "Github Password" %>
+        </div>
+      </div>
+
       <!-- Local -->
       <%= f.fields_for :local do |i| %>
         <div class="field">

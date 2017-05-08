@@ -9,15 +9,14 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    @qualquer
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     @function_user_project = FunctionUserProject.new
-    @client = Octokit::Client.new(:login => 'guilhermeddf', :password => 'a07021991')
-    @verif_repo = @client.repository?("guilhermeddf/"+@project.name)
+    @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
+    @verif_repo = @client.repository?(current_user.usernamegit+'/'+@project.name)
     if @verif_repo 
       @var = @client.repository("guilhermeddf/"+@project.name)
     end
@@ -38,7 +37,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @client = Octokit::Client.new(:login => 'guilhermeddf', :password => 'a07021991')
+    @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
     x = params[:opcao_privado] == "true"? true : false
 
     @client.create_repository(@project.name, options = {"description": params[:description],

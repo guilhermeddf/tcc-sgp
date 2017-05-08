@@ -36,6 +36,16 @@
       </div>
 
       <div class="field">
+          <%= f.label :usernamegit %><br />
+          <%= f.text_field :usernamegit, autofocus: true%>
+      </div>
+
+      <div class="field">
+          <%= f.label :passwordgit %><br />
+          <%= f.password_field :passwordgit, autocomplete: "off"%>
+      </div>
+
+      <div class="field">
         <%= f.label :current_password %> <i>(Nós precisamos que você coloque sua senha atual para confirmar as mudanças
         )</i><br />
         <%= f.password_field :current_password, autocomplete: "off" %>
