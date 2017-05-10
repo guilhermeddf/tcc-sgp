@@ -1,7 +1,7 @@
 class FunctionUserProjectsController < ApplicationController
   before_action :set_function_user_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_client
   before_action :set_project
-
   # GET /function_user_projects
   # GET /function_user_projects.json
   def index
@@ -26,13 +26,18 @@ class FunctionUserProjectsController < ApplicationController
   # POST /function_user_projects
   # POST /function_user_projects.json
   def create
-    @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
     @function_user_project = FunctionUserProject.new(function_user_project_params)
     @function_user_project.project = @project
+    
+    #funcao que convida o usuario para o repositorio
     @client.invite_user_to_repository(current_user.usernamegit+'/'+@project.name, User.find(@function_user_project.user_id).usernamegit)
-
-
-
+    
+    puts "\n\n\n"
+    puts current_user.usernamegit
+    puts @project.name
+    puts User.find(@function_user_project.user_id).usernamegit
+    puts "\n\n\n"
+    
     respond_to do |format|
       if @function_user_project.save
         format.html { redirect_to project_path(@function_user_project.project), notice: 'Membro adicionando com sucesso ao projeto.' }
@@ -62,10 +67,8 @@ class FunctionUserProjectsController < ApplicationController
   # DELETE /function_user_projects/1
   # DELETE /function_user_projects/1.json
   def destroy
-    #@client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
-    #var = @client.repository_invitations(@project.name)
-
-    #@client.delete_repository_invitation(current_user.usernamegit+'/'+@project.name, invitation_id)
+    #funcao que remove colaborador do repositorio
+    @client.remove_collaborator(current_user.usernamegit+'/'+@project.name, User.find(@function_user_project.user_id).usernamegit)
 
     @function_user_project.destroy
     respond_to do |format|
@@ -82,6 +85,10 @@ class FunctionUserProjectsController < ApplicationController
 
     def set_project
       @project = Project.find(params[:project_id])
+    end
+
+    def set_client
+      @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -26,42 +26,6 @@
     <%= @project.local.name %>
   </p>
 
-  <% if @verif_repo %>
-    <div id="exibe_repos">
-      <h4>Dados do Repositório</h4>
-      <p>
-        <strong>Nome:</strong>
-        <%=  @var.name %>
-      </p>
-      <p>
-        <strong>Descrição:</strong>
-        <%=  @var.description %>
-      </p>
-      <p>
-        <strong>Home Page:</strong>
-        <%=  @var.homepage %>
-      </p>
-      <strong>Private:</strong>
-        <%=  @var.private %>
-      </p>
-
-      <p>
-        <strong>Issues:</strong>
-        <%= @var.has_issues  %>
-      </p>
-      <p>
-        <strong>Projetos:</strong>
-        <%=  @var.has_projects %>
-      </p>
-      <p>
-        <strong>Wiki:</strong>
-        <%=  @var.has_wiki %>
-      </p>
-
-    </div>
-  <% end %>
-    
-
     <%= link_to 'Editar', edit_project_path(@project), class: 'ui button' %>
     <%= link_to 'Voltar', projects_path, class: 'ui button' %>
 </div>
@@ -72,6 +36,7 @@
   <%= link_to 'Gerenciar Sprints', project_sprints_path(@project),class: 'ui positive button'%>
   <%= link_to 'Gerenciar Releases', project_releases_path(@project),class: 'ui positive button'%>
   <%= link_to 'Gerenciar Temas', project_themes_path(@project),class: 'ui positive button'%>
+  <%= link_to 'Visualizar Repositório', show_repository_path(project_receive: @project),class: 'ui positive button'%>
 </div>
 
 <h1 class"ui header">Membros do projeto</h1>

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_client, only: [:show, :edit, :update, :destroy, :show_repository_project]
   def select
       @projects = current_user.projects
       session[:project] = params['project_id'] if params['project_id']
@@ -15,11 +15,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @function_user_project = FunctionUserProject.new
-    @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
-    @verif_repo = @client.repository?(current_user.usernamegit+'/'+@project.name)
-    if @verif_repo 
-      @var = @client.repository("guilhermeddf/"+@project.name)
-    end
   end
 
   # GET /projects/new
@@ -37,17 +32,14 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
     x = params[:opcao_privado] == "true"? true : false
-
+    #funcao que cria repositorio no git
     @client.create_repository(@project.name, options = {"description": params[:description],
                     "homepage": params[:site],
                     "private": x,
                     "has_issues": params[:opc_issues],
                     "has_projects": params[:opc_project],
                     "has_wiki": params[:opc_wiki]}) 
-
-  
 
     respond_to do |format|                
       if @project.save
@@ -78,11 +70,21 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    #funcao que deleta repositorio do git
+    @client.delete_repository(current_user.usernamegit+'/'+@project.name)
+
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_repository_project 
+    @auxiliar_project = Project.find(params[:project_receive]) 
+    @var = @client.repository(current_user.usernamegit+'/'+@auxiliar_project.name)
+    @bra = @client.branches(current_user.usernamegit+'/'+@auxiliar_project.name)
+
   end
 
   private
@@ -91,6 +93,9 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def set_client
+      @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit) 
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :size, :start_date, :end_date, :local_id)
