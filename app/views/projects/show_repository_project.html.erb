@@ -30,16 +30,67 @@
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Commits</th>
+      <th>SHA</th>
+      <th>URL</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
-      <% @bra.each do |branche| %>
+      <% @bra.each do |branches| %>
       <tr>
-        <td><%= branche.name %></td>
-        <td><%= branche.author %></td>
+        <td><%= branches.name %></td>
+        <td><%= branches.commit.sha %></td>
+        <td><%= branches.commit.url %></td>
       </tr>
       <% end %>
   </tbody>
 </table>
+
+<div class="field">
+  <%= label_tag 'Selecione Branch' %>
+  <%= select_tag 'branches', options_from_collection_for_select(@bra, "name", "name"), prompt: "Selecione a Branch" %>
+</div>
+
+<h3 class"ui header">Branch</h3>
+  <table class='ui orange table '>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>SHA</th>
+      <th>Usuário last update</th>
+      <th>Nome last update</th>
+      <th>Data/hora laste update</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%=@unibra.name %></td>
+        <td><%=@unibra.commit.sha %></td>
+        <td><%=@unibra.commit.author.login %></td>
+        <td><%=@unibra.commit.commit.author.name %></td>
+        <td><%=@unibra.commit.commit.author.date %></td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class"ui header">Lista de Commits</h3>
+  <table class='ui orange table '>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%#= @com.commit.author.name %></td>
+        <td><%#= @com.commit.author.date %></td>
+        <td><%#= @com.commit.message %></td>
+        <td><%#= @com.author.login %></td>
+        <td><%#= @com.committer.login %></td>
+      </tr>
+  </tbody>
+</table>
+
+

@@ -32,12 +32,6 @@ class FunctionUserProjectsController < ApplicationController
     #funcao que convida o usuario para o repositorio
     @client.invite_user_to_repository(current_user.usernamegit+'/'+@project.name, User.find(@function_user_project.user_id).usernamegit)
     
-    puts "\n\n\n"
-    puts current_user.usernamegit
-    puts @project.name
-    puts User.find(@function_user_project.user_id).usernamegit
-    puts "\n\n\n"
-    
     respond_to do |format|
       if @function_user_project.save
         format.html { redirect_to project_path(@function_user_project.project), notice: 'Membro adicionando com sucesso ao projeto.' }

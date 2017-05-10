@@ -82,9 +82,13 @@ class ProjectsController < ApplicationController
 
   def show_repository_project 
     @auxiliar_project = Project.find(params[:project_receive]) 
+    #metodo pega repositorio
     @var = @client.repository(current_user.usernamegit+'/'+@auxiliar_project.name)
+    #metodos de pegar branches/branch
     @bra = @client.branches(current_user.usernamegit+'/'+@auxiliar_project.name)
-
+    @unibra = @client.branch(current_user.usernamegit+'/'+@auxiliar_project.name, 'master')
+    #metodo pegar commits
+    @com = @client.commits(current_user.usernamegit+'/'+@auxiliar_project.name, 'master')
   end
 
   private
