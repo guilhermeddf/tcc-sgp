@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'get/project', to: 'projects#select', as: :selection_project
 
   post 'projects/create_repos' => 'projects#create_repos'
-  get 'projects/show_repository_project', to: 'projects#show_repository_project', as: :show_repository
+
+  get 'repository/index', to: 'repository#index', as: :repository_index
+  get 'repository/branch', to: 'repository#branch', as: :repository_branch
 
   root to: 'dashboard#index'
   resources :languages

@@ -1,5 +1,5 @@
 <div class='ui padded center aligned teal segment show'>
-    
+
 <h4>Dados do Projeto</h4>
     <p>
     <strong>Nome:</strong>
@@ -30,13 +30,12 @@
     <%= link_to 'Voltar', projects_path, class: 'ui button' %>
 </div>
 
-
 <div class='ui padded center aligned blue segment show'>
   <%= link_to 'Adicionar membro ao projeto', new_project_function_user_project_path(@project,@function_user_project),class: 'ui positive button'%>
   <%= link_to 'Gerenciar Sprints', project_sprints_path(@project),class: 'ui positive button'%>
   <%= link_to 'Gerenciar Releases', project_releases_path(@project),class: 'ui positive button'%>
   <%= link_to 'Gerenciar Temas', project_themes_path(@project),class: 'ui positive button'%>
-  <%= link_to 'Visualizar Repositório', show_repository_path(project_receive: @project),class: 'ui positive button'%>
+  <%= link_to 'Visualizar Repositório', repository_index_path(project_receive: @project),class: 'ui positive button'%>
 </div>
 
 <h1 class"ui header">Membros do projeto</h1>

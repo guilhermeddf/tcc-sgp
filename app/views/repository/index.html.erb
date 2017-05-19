@@ -1,0 +1,44 @@
+<h3 class"ui header">Dados Gerais</h3>
+  <table class='ui orange table '>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Home Page</th>
+      <th>Private</th>
+      <th>Issues</th>
+      <th>Projetos</th>
+      <th>Wiki</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @var.name %></td>
+        <td><%= @var.description %></td>
+        <td><%= @var.homepage %></td>
+        <td><%= @var.private %></td>
+        <td><%= @var.has_issues %></td>
+        <td><%= @var.has_projects %></td>
+        <td><%= @var.has_wiki %></td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class"ui header">Branches</h3>
+  <table class='ui orange table '>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @bra.each do |branches| %>
+      <tr>
+        <td><%= branches.name %></td>
+        <td><%= link_to 'Visualizar', repository_branch_path(project_receive: @var.name, branche_receive: branches.name), class: 'ui tiny blue basic button' %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

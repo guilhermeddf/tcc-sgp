@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_client, only: [:show, :edit, :update, :destroy, :show_repository_project]
+  before_action :set_client, only: [:show, :edit, :update, :destroy]
   def select
       @projects = current_user.projects
       session[:project] = params['project_id'] if params['project_id']
@@ -39,9 +39,9 @@ class ProjectsController < ApplicationController
                     "private": x,
                     "has_issues": params[:opc_issues],
                     "has_projects": params[:opc_project],
-                    "has_wiki": params[:opc_wiki]}) 
+                    "has_wiki": params[:opc_wiki]})
 
-    respond_to do |format|                
+    respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
@@ -80,17 +80,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show_repository_project 
-    @auxiliar_project = Project.find(params[:project_receive]) 
-    #metodo pega repositorio
-    @var = @client.repository(current_user.usernamegit+'/'+@auxiliar_project.name)
-    #metodos de pegar branches/branch
-    @bra = @client.branches(current_user.usernamegit+'/'+@auxiliar_project.name)
-    @unibra = @client.branch(current_user.usernamegit+'/'+@auxiliar_project.name, 'master')
-    #metodo pegar commits
-    @com = @client.commits(current_user.usernamegit+'/'+@auxiliar_project.name, 'master')
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -98,7 +87,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_client
-      @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit) 
+      @client = Octokit::Client.new(:login => current_user.usernamegit, :password => current_user.passwordgit)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
